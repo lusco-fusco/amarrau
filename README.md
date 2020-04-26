@@ -1,2 +1,2 @@
 # amarrau
-Platform for product price tracking 🔎🛍📲
+Platform for ecommerce product price tracking 🔎🛍📲
