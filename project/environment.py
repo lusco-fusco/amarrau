@@ -58,17 +58,17 @@ def get_env():
     # JWT
     env['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY') or None
     # Mail
-    env['MAIL_USERNAME'] = env.str("MAIL_USERNAME") or None
-    env['MAIL_PASSWORD'] = env.str("MAIL_PASSWORD") or None
-    env['MAIL_SERVER'] = env.str("MAIL_SERVER") or None
-    env['MAIL_PORT'] = env.str("MAIL_PORT") or None
-    env['MAIL_USE_SSL'] = env.str("MAIL_USE_SSL") or None
+    env['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME") or None
+    env['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD") or None
+    env['MAIL_SERVER'] = os.getenv("MAIL_SERVER") or None
+    env['MAIL_PORT'] = os.getenv("MAIL_PORT") or None
+    env['MAIL_USE_SSL'] = os.getenv("MAIL_USE_SSL") or None
     # Redis
-    env['REDIS_PORT'] = env.str("REDIS_PORT") or None
-    env['REDIS_HOST'] = env.str("REDIS_HOST") or None
-    env['REDIS_PASSWORD'] = env.str("REDIS_PASSWORD") or None
+    env['REDIS_PORT'] = os.getenv("REDIS_PORT") or None
+    env['REDIS_HOST'] = os.getenv("REDIS_HOST") or None
+    env['REDIS_PASSWORD'] = os.getenv("REDIS_PASSWORD") or None
     # Scouter
-    env['SCOUTER_HOST'] = env.str("SCOUTER_HOST") or None
-    env['SCOUTER_PORT'] = env.str("SCOUTER_PORT") or None
-    env['SCOUTER_X_API_KEY'] = env.str("SCOUTER_X_API_KEY") or None
+    env['SCOUTER_HOST'] = os.getenv("SCOUTER_HOST") or None
+    env['SCOUTER_PORT'] = os.getenv("SCOUTER_PORT") or None
+    env['SCOUTER_X_API_KEY'] = os.getenv("SCOUTER_X_API_KEY") or None
     return env
