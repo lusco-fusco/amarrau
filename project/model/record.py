@@ -16,6 +16,6 @@ class Record(db.Model, AbstractModel):
 # -------------------------------------
 # Marshmallow schemas
 # -------------------------------------
-class RecordSchema(ma.ModelSchema):
+class RecordSchema(ma.Schema):
     class Meta:
         fields = ('product_id', 'date', 'price')

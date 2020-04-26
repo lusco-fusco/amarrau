@@ -43,6 +43,7 @@ class Product(db.Model, AbstractModelWithId):
         response = requests.post(app.config.get('SCOUTER_ENDPOINT'), data={"url": url}).json()
         return response.get('name'), response.get('price')
 
+
 # -------------------------------------
 # Marshmallow schemas
 # -------------------------------------
