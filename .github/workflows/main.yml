@@ -3,6 +3,9 @@ on:
     push:
         branches:
             - master
+    pull_request:
+        branches:
+          - master
 jobs:
     build:
         runs-on: ubuntu-18.04
@@ -18,7 +21,13 @@ jobs:
           run: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
+        - name: Run test
+          env:
+            DATABASE_TEST_URI: ${{ secrets.DATABASE_TEST_URI }}
+          run: |
+            python test_runner.py
         - name: Migrate database schema
+          if: github.event_name != 'pull_request'
           env:
             DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
             DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
@@ -29,12 +38,14 @@ jobs:
             flask db upgrade
         - name: Build Docker Image
           env:
+            if: github.event_name != 'pull_request'
             HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
             APP_NAME: ${{ 'amarrau' }}
           run: |
             docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
             heroku container:push web -a $APP_NAME
         - name: Deploy Docker container
+          if: github.event_name != 'pull_request'
           env:
             HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
             APP_NAME: ${{ 'amarrau' }}
