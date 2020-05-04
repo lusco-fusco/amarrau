@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('url', sa.Text(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('role',
+    role_table = op.create_table('role',
     sa.Column('name', sa.Enum('ADMIN', 'USER', name='rolename'), nullable=False),
     sa.PrimaryKeyConstraint('name')
     )
@@ -65,6 +65,13 @@ def upgrade():
     sa.UniqueConstraint('user_id', 'product_id', name='_email_product_uc')
     )
     # ### end Alembic commands ###
+    op.bulk_insert(
+        role_table,
+        [
+            {'name': 'ADMIN'},
+            {'name': 'USER'}
+        ]
+    )
 
 
 def downgrade():
