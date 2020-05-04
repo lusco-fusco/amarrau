@@ -37,8 +37,8 @@ jobs:
           run: |
             flask db upgrade
         - name: Build Docker Image
+          if: github.event_name != 'pull_request'
           env:
-            if: github.event_name != 'pull_request'
             HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
             APP_NAME: ${{ 'amarrau' }}
           run: |
